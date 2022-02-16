@@ -1,0 +1,24 @@
+# action.yml
+name: 'Init'
+description: 'Prepare docker image name'
+inputs:
+  container-registry: 
+    description: 'Container registry'
+    required: true
+  repository:
+    description: 'Repository'
+    required: true
+  commit-hash:
+    description: 'Github commit hash'
+    required: true
+
+outputs:
+  image-name: # id of output
+    description: 'The full image name'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.container-registry }}
+    - ${{ inputs.repository }}
+    - ${{ inputs.commit-hash }}
